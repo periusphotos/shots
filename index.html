@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Vigilens</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./files/styles.css">
+<link rel="stylesheet" href="./files/fonts">
+<link rel="stylesheet" href="./files/font-awesome.min.css">
+<style>
+body,h1 {font-family: "Montserrat", sans-serif}
+img {margin-bottom: -7px}
+.w3-row-padding img {margin-bottom: 12px}
+.image{
+  width:100%;
+  -webkit-filter: grayscale(0%);
+  -webkit-transition: -webkit-filter .8s;
+}
+.image:hover {
+  cursor: pointer;
+  -webkit-filter: grayscale(100%); 
+     }
+</style>
+</head><body>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding:0px" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
+    <i class="fa fa-remove"></i>
+  </a>
+  <div class="w3-bar-block w3-center">
+    <img id="selectedImage" src="">
+    <!-- <a href="https://google.com" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
+    <a href="https://google.com" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>
+    <a href="https://google.com" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>
+    <a href="https://google.com" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a> -->
+  </div>
+</nav>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-content" style="max-width:1500px">
+
+<!-- Header -->
+<div class="w3-opacity">
+<!-- <span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span>  -->
+<div class="w3-clear"></div>
+<header class="w3-center w3-margin-bottom">
+  <h1><img src="img/logo.jpg" style="border-radius: 100%; width: 140px;"></h1>
+  <h1><b>Hi, I'm Perius</b></h1>
+  <p><b>Just a guy who likes to take pictures.</b></p>
+</header>
+</div>
+
+<!-- Photo Grid -->
+<div class="w3-row-padding" id="myGrid" style="margin-bottom:128px">
+  <div class="w3-third">
+    <img src="./img/1.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/2.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/3.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/4.jpg" class="image" onclick="w3_open(this)">
+  </div>
+
+  <div class="w3-third">
+    <img src="./img/5.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/6.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/7.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/8.jpg" class="image" onclick="w3_open(this)">
+  </div>
+
+  <div class="w3-third">
+    <img src="./img/9.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/10.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/11.jpg" class="image" onclick="w3_open(this)">
+    <img src="./img/12.jpg" class="image" onclick="w3_open(this)">
+  </div>
+</div>
+
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px"> 
+  <!-- <i class="fa fa-facebook-official w3-hover-opacity"></i> -->
+  <!-- <i class="fa fa-instagram w3-hover-opacity"></i> -->
+  <!-- <i class="fa fa-snapchat w3-hover-opacity"></i> -->
+  <!-- <i class="fa fa-pinterest-p w3-hover-opacity"></i> -->
+  <a title="Follow Me!" href="https://www.twitter.com/vigilens" target="_blank"><i class="fa fa-3x fa-twitter w3-hover-opacity"></i></a>
+  <!-- <i class="fa fa-linkedin w3-hover-opacity"></i> -->
+  <!-- <p class="w3-medium"><a href="https://www.twitter.com/vigilens" target="_blank" class="w3-hover-text-green">Follow me <img style="width: 50px;" src="img/Twitter-icon.png"></a></p> -->
+</footer>
+ 
+<script>
+// Toggle grid padding
+function myFunction() {
+  var x = document.getElementById("myGrid");
+  if (x.className === "w3-row") {
+    x.className = "w3-row-padding";
+  } else { 
+    x.className = x.className.replace("w3-row-padding", "w3-row");
+  }
+}
+
+function w3_open(el) {
+  var img = new Image();
+  img.onload = function() {
+    console.log(this.width + 'x' + this.height);
+
+    var widthDiff = this.width - window.innerWidth;
+    var heightDiff = this.height - window.innerHeight;
+    console.log(widthDiff, heightDiff);
+    if (widthDiff > heightDiff){
+      document.getElementById("selectedImage").style.width = window.innerWidth + "px";
+      document.getElementById("selectedImage").style.height = null;
+    }else{
+      console.log(window.innerHeight);
+      document.getElementById("selectedImage").style.height = window.innerHeight + "px";
+      document.getElementById("selectedImage").style.width = null;
+    }
+  }
+  img.src = el.src;
+
+  document.getElementById("selectedImage").src = el.src;
+  // document.getElementById("selectedImage").style.width = window.innerWidth;
+  // document.getElementById("selectedImage").style.width = window.innerWidth;
+  document.getElementById("mySidebar").style.width = "100%";
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+
+</body></html>
